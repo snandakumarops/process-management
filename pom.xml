@@ -63,7 +63,7 @@
 			<groupId>com.myspace</groupId>
 			<artifactId>Deposit_Retention</artifactId>
 			<version>1.0.0</version>
-			<scope>compile</scope>
+			
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
