@@ -97,6 +97,7 @@
 		<dependency>
 			<groupId>org.kie</groupId>
 			<artifactId>kie-ci</artifactId>
+			  <version>7.20.0.Final</version>
 		</dependency>
 
 		<dependency>
