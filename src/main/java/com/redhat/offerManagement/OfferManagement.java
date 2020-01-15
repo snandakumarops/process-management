@@ -1,7 +1,6 @@
-package com.redhat.depositretention;
+package com.redhat.offerManagement;
 
-import com.redhat.depositretention.drools.DroolsRulesApplier;
-import org.apache.camel.builder.RouteBuilder;
+import com.redhat.offerManagement.rules.RulesApplier;
 import org.apache.kafka.common.serialization.Serdes;
 import org.apache.kafka.streams.KeyValue;
 import org.apache.kafka.streams.StreamsBuilder;
@@ -15,7 +14,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.kafka.annotation.EnableKafka;
 import org.springframework.kafka.annotation.EnableKafkaStreams;
 import org.springframework.kafka.annotation.KafkaStreamsDefaultConfiguration;
-import org.springframework.web.bind.annotation.RestController;
 
 
 import java.util.HashMap;
@@ -24,7 +22,7 @@ import java.util.Map;
 @SpringBootApplication
 @EnableKafka
 @EnableKafkaStreams
-public class DepositRetention {
+public class OfferManagement {
 
 	public static final String BROKER_URL = "my-cluster-kafka-brokers:9092";
 	public static final String INPUT_TOPIC = "event-input-stream";
@@ -46,19 +44,19 @@ public class DepositRetention {
 	@Bean
 	public KStream<String, String> kStream(StreamsBuilder builder) {
 
-		DroolsRulesApplier rulesApplier = new DroolsRulesApplier();
+		RulesApplier rulesApplier = new RulesApplier();
 		final KStream<String, String> inputTopic = builder.stream(INPUT_TOPIC);
 
-		KStream<String, String> outputData = inputTopic.map((x,y) -> new KeyValue<>(x,rulesApplier.processTransaction(x,y)));
+		KStream<String, String> outputData = inputTopic.map((x,y) -> new KeyValue<String,String>(x,rulesApplier.processTransactionDMN(x,y)));
 		//Branch all not null events
-		KStream<String, String>[] analyzedEvents = outputData.branch((x, y) ->  y!=null);
-		analyzedEvents[0].to(OUTPUT_TOPIC, Produced.with(Serdes.String(), Serdes.String()));
+//		KStream<String, String>[] analyzedEvents = outputData.branch((x, y) ->  y!=null);
+//		analyzedEvents[0].to(OUTPUT_TOPIC, Produced.with(Serdes.String(), Serdes.String()));
 
 		return outputData;
 	}
 
 
 	public static void main(String[] args) {
-		SpringApplication.run(DepositRetention.class, args);
+		SpringApplication.run(OfferManagement.class, args);
 	}
 }

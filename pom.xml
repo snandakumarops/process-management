@@ -4,21 +4,23 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.redhat.depositretention</groupId>
-	<artifactId>deposit-retention</artifactId>
+	<artifactId>offer-management</artifactId>
 	<version>1.0.0</version>
 	<packaging>jar</packaging>
 
-	<name>deposit-retention</name>
-	<description>Deposit Retention Use case</description>
-  <repositories>
-    <repository>
-      <id>maven-DM</id>
-      <name>maven-DM</name>
-      <url>http://nexus-nexus.192.168.99.100.nip.io/repository/maven-DM/</url>
-      <layout>default</layout>
-    </repository>
-	  </repositories>
-  
+	<name>offer-management</name>
+	<description>Offer Management Use case</description>
+
+	<distributionManagement>
+		<repository>
+			<id>maven-DM</id>
+			<name>maven-DM</name>
+			<url>http://nexus-nexus.apps.cluster-florida-ee6b.florida-ee6b.example.opentlc.com/repository/maven-DM/</url>
+			<layout>default</layout>
+
+		</repository>
+	</distributionManagement>
+
 	<parent>
 
 		<groupId>org.springframework.boot</groupId>
@@ -61,14 +63,36 @@
 	<dependencies>
 		<dependency>
 			<groupId>com.myspace</groupId>
-			<artifactId>Deposit_Retention</artifactId>
-			<version>1.0.0</version>
+			<artifactId>OfferPrediction</artifactId>
+			<version>1.0.0-SNAPSHOT</version>
 			<scope>provided</scope>
 			
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>offermanagement</groupId>
+			<artifactId>customer-repository-jdg</artifactId>
+			<version>1.0.0.0</version>
+		</dependency>
+		<dependency>
+			<groupId>offermanagment</groupId>
+			<artifactId>customer-repository</artifactId>
+			<version>1.0.0.0</version>
+		</dependency>
+
+
+		<dependency>
+			<groupId>offermanagement</groupId>
+			<artifactId>past-history-repository</artifactId>
+			<version>1.0.0.0</version>
+		</dependency>
+		<dependency>
+			<groupId>offermanagement</groupId>
+			<artifactId>past-history-repository-jdg</artifactId>
+			<version>1.0.0.0</version>
 		</dependency>
 
 		<dependency>
