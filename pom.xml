@@ -239,18 +239,15 @@
 
 		</plugins>
 	</build>
-	<profiles>
-		<profile>
-			<id>openshift</id>
-			<repositories>
-				<repository>
-					<id>maven-releases</id>
-					<name>maven-releases</name>
-					<url>http://nexus-nexus.apps.cluster-florida-ee6b.florida-ee6b.example.opentlc.com/repository/maven-DM/</url>
-				</repository>
-			</repositories>
-		</profile>
-	</profiles>
+	
+
+	<repositories>
+		<repository>
+			<id>maven-DM</id>
+			<name>maven-DM</name>
+			<url>http://nexus-nexus.apps.cluster-florida-ee6b.florida-ee6b.example.opentlc.com/repository/maven-DM/</url>
+		</repository>
+	</repositories>
 	
 
 
