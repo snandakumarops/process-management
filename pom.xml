@@ -190,6 +190,15 @@
 			<artifactId>drools-compiler</artifactId>
 		</dependency>
 
+
+		<dependency>
+			<groupId>org.infinispan</groupId>
+			<artifactId>infinispan-client-hotrod</artifactId>
+			<version>8.5.3.Final-redhat-00002</version>
+		</dependency>
+
+
+
 		<dependency>
 			<groupId>org.drools</groupId>
 			<artifactId>drools-workbench-models-datamodel-api</artifactId>
