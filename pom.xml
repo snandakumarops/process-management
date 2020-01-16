@@ -11,15 +11,15 @@
 	<name>offer-management</name>
 	<description>Offer Management Use case</description>
 
-	<distributionManagement>
-		<repository>
-			<id>maven-DM</id>
-			<name>maven-DM</name>
-			<url>http://nexus-nexus.apps.cluster-florida-ee6b.florida-ee6b.example.opentlc.com/repository/maven-DM/</url>
-			<layout>default</layout>
+	<!--<distributionManagement>-->
+		<!--<repository>-->
+			<!--<id>maven-DM</id>-->
+			<!--<name>maven-DM</name>-->
+			<!--<url>http://nexus-nexus.apps.cluster-florida-ee6b.florida-ee6b.example.opentlc.com/repository/maven-DM/</url>-->
+			<!--<layout>default</layout>-->
 
-		</repository>
-	</distributionManagement>
+		<!--</repository>-->
+	<!--</distributionManagement>-->
 
 	<parent>
 
@@ -216,16 +216,16 @@
 
 
 
-	<repositories>
-		<repository>
-			<id>maven-DM</id>
-			<name>maven-DM</name>
-			<url>http://nexus-nexus.apps.cluster-florida-ee6b.florida-ee6b.example.opentlc.com/repository/maven-DM/</url>
-		</repository>
+	<!--<repositories>-->
+		<!--<repository>-->
+			<!--<id>maven-DM</id>-->
+			<!--<name>maven-DM</name>-->
+			<!--<url>http://nexus-nexus.apps.cluster-florida-ee6b.florida-ee6b.example.opentlc.com/repository/maven-DM/</url>-->
+		<!--</repository>-->
 
 
 
-	</repositories>
+	<!--</repositories>-->
 
 
 
