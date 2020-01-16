@@ -74,11 +74,13 @@
 			<groupId>offermanagement</groupId>
 			<artifactId>customer-repository-jdg</artifactId>
 			<version>1.0.0.0</version>
+			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>offermanagment</groupId>
 			<artifactId>customer-repository</artifactId>
 			<version>1.0.0.0</version>
+			<scope>provided</scope>
 		</dependency>
 
 
@@ -86,11 +88,13 @@
 			<groupId>offermanagement</groupId>
 			<artifactId>past-history-repository</artifactId>
 			<version>1.0.0.0</version>
+			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>offermanagement</groupId>
 			<artifactId>past-history-repository-jdg</artifactId>
 			<version>1.0.0.0</version>
+			<scope>provided</scope>
 		</dependency>
 
 		<dependency>
