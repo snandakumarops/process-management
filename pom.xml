@@ -23,7 +23,7 @@
 						<manifest>
 							<addClasspath>true</addClasspath>
 							<classpathPrefix>lib/</classpathPrefix>
-							<mainClass>com.redhat.offermanagement.OfferManagement</mainClass>
+							<mainClass>com.redhat.offerManagement.OfferManagement</mainClass>
 						</manifest>
 					</archive>
 				</configuration>
