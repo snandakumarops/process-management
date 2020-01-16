@@ -11,15 +11,15 @@
 	<name>offer-management</name>
 	<description>Offer Management Use case</description>
 
-	<!--<distributionManagement>-->
-		<!--<repository>-->
-			<!--<id>maven-DM</id>-->
-			<!--<name>maven-DM</name>-->
-			<!--<url>http://nexus-nexus.apps.cluster-florida-ee6b.florida-ee6b.example.opentlc.com/repository/maven-DM/</url>-->
-			<!--<layout>default</layout>-->
+	<distributionManagement>
+		<repository>
+			<id>maven-DM</id>
+			<name>maven-DM</name>
+			<url>http://nexus-nexus.apps.cluster-florida-ee6b.florida-ee6b.example.opentlc.com/repository/maven-DM/</url>
+			<layout>default</layout>
 
-		<!--</repository>-->
-	<!--</distributionManagement>-->
+		</repository>
+	</distributionManagement>
 
 	<parent>
 
@@ -213,20 +213,47 @@
 
 	</dependencies>
 
-
-
-	<profiles>
-		<profile>
-			<id>openshift</id>
+<build>
+	<plugins>
+		<plugin>
+			<groupId>io.fabric8</groupId>
+			<artifactId>fabric8-maven-plugin</artifactId>
+			<version>4.0.0</version>
+			<executions>
+				<execution>
+					<id>fmp</id>
+					<goals>
+						<goal>resource</goal>
+						<goal>build</goal>
+					</goals>
+				</execution>
+			</executions>
+			<configuration>
+				<enricher>
+					<excludes>
+						<exclude>f8-maven-scm</exclude>
+					</excludes>
+					<!-- ADD HEALTH CHECK HERE -->
+				</enricher>
+			</configuration>
+		</plugin>
+	</plugins>
+</build>
+    <profiles>
+        <profile>
+            <id>openshift</id>
 			<repositories>
 				<repository>
-					<id>maven-releases</id>
-					<name>maven-releases</name>
+					<id>maven-DM</id>
+					<name>maven-DM</name>
 					<url>http://nexus-nexus.apps.cluster-florida-ee6b.florida-ee6b.example.opentlc.com/repository/maven-DM/</url>
 				</repository>
-			</repositories>
-		</profile>
-	</profiles>
+            </repositories>
+        </profile>
+    </profiles>
+
+
+
 
 
 
