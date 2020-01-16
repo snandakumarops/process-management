@@ -40,13 +40,11 @@
 
 		<dependencies>
 			<dependency>
-				<!-- https://mvnrepository.com/artifact/org.drools/drools-bom -->
-
-					<groupId>org.drools</groupId>
-					<artifactId>drools-bom</artifactId>
-					<version>7.18.0.Final-redhat-00002</version>
-				<type>pom</type>
+				<groupId>com.redhat.ba</groupId>
+				<artifactId>ba-platform-bom</artifactId>
+				<version>7.5.1.redhat-00001</version>
 				<scope>import</scope>
+				<type>pom</type>
 			</dependency>
 
 			<dependency>
@@ -121,7 +119,7 @@
 		<dependency>
 			<groupId>org.kie</groupId>
 			<artifactId>kie-ci</artifactId>
-			  <version>7.20.0.Final</version>
+
 		</dependency>
 
 		<dependency>
@@ -211,35 +209,8 @@
 
 	</dependencies>
 
-	<build>
-		<plugins>
-			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
-			</plugin>
-			<plugin>
-				<groupId>org.jboss.redhat-fuse</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
-				<version>${bom.version}</version>
-				<executions>
-					<execution>
-						<goals>
-							<goal>repackage</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
-			<plugin>
-        			<groupId>org.kie</groupId>
-        			<artifactId>kie-maven-plugin</artifactId>
-        			<version>${version.org.kie}</version>
-       			        <extensions>true</extensions>
-      			</plugin>
-			
 
-		</plugins>
-	</build>
-	
+
 
 	<repositories>
 		<repository>
@@ -247,8 +218,11 @@
 			<name>maven-DM</name>
 			<url>http://nexus-nexus.apps.cluster-florida-ee6b.florida-ee6b.example.opentlc.com/repository/maven-DM/</url>
 		</repository>
+
+
 	</repositories>
-	
+
+
 
 
 </project>
