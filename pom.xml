@@ -72,13 +72,13 @@
 			<artifactId>spring-boot-starter</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>offermanagement</groupId>
+			<groupId>com.myspace</groupId>
 			<artifactId>customer-repository-jdg</artifactId>
 			<version>1.0.0.0</version>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
-			<groupId>offermanagment</groupId>
+			<groupId>com.myspace</groupId>
 			<artifactId>customer-repository</artifactId>
 			<version>1.0.0.0</version>
 			<scope>provided</scope>
@@ -86,13 +86,13 @@
 
 
 		<dependency>
-			<groupId>offermanagement</groupId>
+			<groupId>com.myspace</groupId>
 			<artifactId>past-history-repository</artifactId>
 			<version>1.0.0.0</version>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
-			<groupId>offermanagement</groupId>
+			<groupId>com.myspace</groupId>
 			<artifactId>past-history-repository-jdg</artifactId>
 			<version>1.0.0.0</version>
 			<scope>provided</scope>
