@@ -11,7 +11,7 @@
 	<name>offer-management</name>
 	<description>Offer Management Use case</description>
 
-	<distributionManagement>
+	<repositories>
 		<repository>
 			<id>maven-DM</id>
 			<name>maven-DM</name>
@@ -19,7 +19,8 @@
 			<layout>default</layout>
 
 		</repository>
-	</distributionManagement>
+
+	</repositories>
 
 	<parent>
 
