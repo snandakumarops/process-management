@@ -193,7 +193,7 @@
 		<dependency>
 			<groupId>org.infinispan</groupId>
 			<artifactId>infinispan-client-hotrod</artifactId>
-			<version>9.4.15.Final-redhat-00001</version>
+			<version>9.3.6.Final-redhat-00001</version>
 		</dependency>
 
 
