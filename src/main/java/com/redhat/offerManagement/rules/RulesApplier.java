@@ -42,7 +42,7 @@ public class RulesApplier {
          PastHistoryRepository pastHistoryRepository = new JdgPastHistRepository();
 
 
-        DMNRuntime dmnRuntime = RulesSessionFactory.createDMNRuntime("");
+        DMNRuntime dmnRuntime = RulesSessionFactory.createDMNRuntime();
         String namespace = "https://kiegroup.org/dmn/_394B8012-7D73-4D4E-B6A3-088C14D828D9";
         String modelName = "OfferPredictionDMN";
         DMNModel dmnModel = dmnRuntime.getModel(namespace, modelName);

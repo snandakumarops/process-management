@@ -9,7 +9,7 @@ import org.kie.dmn.api.core.DMNRuntime;
 public class RulesSessionFactory {
 
 
-    protected static DMNRuntime createDMNRuntime(String sessionName) {
+    protected static DMNRuntime createDMNRuntime() {
         KieServices kieServices = KieServices.Factory.get();
 //        ReleaseId releaseId = kieServices.newReleaseId("com.myspace","OfferPrediction","1.0.0-SNAPSHOT");
         KieContainer kieContainer = kieServices.newKieClasspathContainer();
