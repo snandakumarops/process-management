@@ -195,7 +195,12 @@
 			<artifactId>infinispan-client-hotrod</artifactId>
 			<version>8.5.3.Final-redhat-00002</version>
 		</dependency>
+		<dependency>
+			<groupId>org.infinispan</groupId>
+			<artifactId>infinispan-commons</artifactId>
+			<version>8.5.3.Final-redhat-00002</version>
 
+		</dependency>
 
 
 		<dependency>
