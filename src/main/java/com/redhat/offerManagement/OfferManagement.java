@@ -26,7 +26,7 @@ public class OfferManagement {
 
 	public static final String BROKER_URL = "my-cluster-kafka-brokers:9092";
 	public static final String INPUT_TOPIC = "event-input-stream";
-	public static final String OUTPUT_TOPIC = "offer-output-stream";
+	public static final String OUTPUT_TOPIC = "offer-output";
 
 
 
@@ -49,8 +49,8 @@ public class OfferManagement {
 
 		KStream<String, String> outputData = inputTopic.map((x,y) -> new KeyValue<String,String>(x,rulesApplier.processTransactionDMN(x,y)));
 		//Branch all not null events
-//		KStream<String, String>[] analyzedEvents = outputData.branch((x, y) ->  y!=null);
-//		analyzedEvents[0].to(OUTPUT_TOPIC, Produced.with(Serdes.String(), Serdes.String()));
+		KStream<String, String>[] analyzedEvents = outputData.branch((x, y) ->  y!=null);
+		analyzedEvents[0].to(OUTPUT_TOPIC, Produced.with(Serdes.String(), Serdes.String()));
 
 		return outputData;
 	}

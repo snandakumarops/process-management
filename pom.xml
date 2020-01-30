@@ -3,7 +3,7 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>com.redhat.depositretention</groupId>
+	<groupId>com.redhat</groupId>
 	<artifactId>offer-management</artifactId>
 	<version>1.0.0</version>
 	<packaging>jar</packaging>
@@ -15,45 +15,27 @@
 		<plugins>
 			<plugin>
 				<!-- Build an executable JAR -->
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-jar-plugin</artifactId>
-				<version>3.1.0</version>
-				<configuration>
-					<archive>
-						<manifest>
-							<addClasspath>true</addClasspath>
-							<classpathPrefix>lib/</classpathPrefix>
-							<mainClass>com.redhat.offerManagement.OfferManagement</mainClass>
-						</manifest>
-					</archive>
-				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>org.jboss.redhat-fuse</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
-				<version>${bom.version}</version>
-				<executions>
-					<execution>
-						<goals>
-							<goal>repackage</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
 
-		</plugins>
+					<groupId>org.springframework.boot</groupId>
+					<artifactId>spring-boot-maven-plugin</artifactId>
+				</plugin>
+				<plugin>
+					<groupId>org.jboss.redhat-fuse</groupId>
+					<artifactId>spring-boot-maven-plugin</artifactId>
+					<version>${bom.version}</version>
+					<executions>
+						<execution>
+							<goals>
+								<goal>repackage</goal>
+							</goals>
+						</execution>
+					</executions>
+				</plugin>
+
+			</plugins>
+
 	</build>
 
-	<repositories>
-		<repository>
-			<id>maven-DM</id>
-			<name>maven-DM</name>
-			<url>http://nexus-nexus.apps.cluster-florida-ee6b.florida-ee6b.example.opentlc.com/repository/maven-DM/</url>
-			<layout>default</layout>
-
-		</repository>
-
-	</repositories>
 
 	<parent>
 
@@ -73,13 +55,15 @@
 	<dependencyManagement>
 
 		<dependencies>
+			<!-- https://mvnrepository.com/artifact/com.redhat.ba/ba-platform-bom -->
 			<dependency>
 				<groupId>com.redhat.ba</groupId>
 				<artifactId>ba-platform-bom</artifactId>
 				<version>7.5.1.redhat-00001</version>
-				<scope>import</scope>
 				<type>pom</type>
+				<scope>import</scope>
 			</dependency>
+
 
 
 		</dependencies>
@@ -90,7 +74,7 @@
 		<dependency>
 			<groupId>com.myspace</groupId>
 			<artifactId>OfferPrediction</artifactId>
-			<version>1.0.0</version>
+			<version>3.0.0</version>
 			<scope>provided</scope>
 			
 		</dependency>
@@ -99,13 +83,13 @@
 			<artifactId>spring-boot-starter</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>com.myspace</groupId>
+			<groupId>offermanagement</groupId>
 			<artifactId>customer-repository-jdg</artifactId>
 			<version>1.0.0.0</version>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
-			<groupId>com.myspace</groupId>
+			<groupId>offermanagment</groupId>
 			<artifactId>customer-repository</artifactId>
 			<version>1.0.0.0</version>
 			<scope>provided</scope>
@@ -119,13 +103,13 @@
 
 
 		<dependency>
-			<groupId>com.myspace</groupId>
+			<groupId>offermanagement</groupId>
 			<artifactId>past-history-repository</artifactId>
 			<version>1.0.0.0</version>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
-			<groupId>com.myspace</groupId>
+			<groupId>offermanagement</groupId>
 			<artifactId>past-history-repository-jdg</artifactId>
 			<version>1.0.0.0</version>
 			<scope>provided</scope>
@@ -228,10 +212,36 @@
 			<artifactId>javax.json-api</artifactId>
 			<version>1.0</version>
 		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.kie/kie-dmn-jpmml -->
+		<dependency>
+			<groupId>org.kie</groupId>
+			<artifactId>kie-dmn-jpmml</artifactId>
+			<version>7.27.0.Final</version>
+		</dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.jpmml/pmml-evaluator -->
+        <dependency>
+            <groupId>org.jpmml</groupId>
+            <artifactId>pmml-evaluator</artifactId>
+            <version>1.4.9</version>
+        </dependency>
+		<!-- https://mvnrepository.com/artifact/org.jpmml/pmml-evaluator-extension -->
+		<dependency>
+			<groupId>org.jpmml</groupId>
+			<artifactId>pmml-evaluator-extension</artifactId>
+			<version>1.4.9</version>
+		</dependency>
+
 		<dependency>
 			<groupId>com.google.code.gson</groupId>
 			<artifactId>gson</artifactId>
 			<version>2.8.5</version>
+		</dependency>
+		<dependency>
+			<groupId>org.drools</groupId>
+			<artifactId>kie-pmml</artifactId>
+
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -256,13 +266,32 @@
 		<dependency>
 			<groupId>org.kie</groupId>
 			<artifactId>kie-dmn-core</artifactId>
-			<version>LATEST</version>
+
 		</dependency>
 
 
 	</dependencies>
 
 
-
+	<profiles>
+		<profile>
+			<id>openshift</id>
+			<repositories>
+				<repository>
+					<id>nexus-releases</id>
+					<name>nexus-releases</name>
+					<url>${env.NEXUSREPO}/repository/maven-releases/</url>
+				</repository>
+			</repositories>
+			<distributionManagement>
+				<repository>
+					<id>nexus-releases</id>
+					<name>nexus-releases</name>
+					<url>${env.NEXUSREPO}/repository/maven-releases/</url>
+					<layout>default</layout>
+				</repository>
+			</distributionManagement>
+		</profile>
+	</profiles>
 
 </project>
