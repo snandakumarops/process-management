@@ -74,7 +74,7 @@
 		<dependency>
 			<groupId>com.myspace</groupId>
 			<artifactId>OfferPrediction</artifactId>
-			<version>3.0.0</version>
+			<version>1.0.0</version>
 			<scope>provided</scope>
 			
 		</dependency>
