@@ -76,6 +76,7 @@ public class RulesApplier {
 
             if(!resultOfferPayload.equals("No Active Offers")) {
                 CustomerOfferModel customerOfferModel = new CustomerOfferModel();
+                customerOfferModel.setCustId(customerModel.getCustId());
                 customerOfferModel.setCustAge(customerModel.getAge());
                 customerOfferModel.setCustIncome(customerModel.getIncome());
                 customerOfferModel.setCustClass(customerModel.getCustomerClass());
