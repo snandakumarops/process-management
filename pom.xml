@@ -227,13 +227,13 @@
         <dependency>
             <groupId>org.jpmml</groupId>
             <artifactId>pmml-evaluator</artifactId>
-            <version>1.4.7</version>
+            <version>1.4.9</version>
         </dependency>
 		<!-- https://mvnrepository.com/artifact/org.jpmml/pmml-evaluator-extension -->
 		<dependency>
 			<groupId>org.jpmml</groupId>
 			<artifactId>pmml-evaluator-extension</artifactId>
-			<version>1.4.7</version>
+			<version>1.4.9</version>
 		</dependency>
 
 		<dependency>
@@ -293,6 +293,12 @@
 					<url>${env.NEXUSREPO}/repository/maven-releases/</url>
 					<layout>default</layout>
 				</repository>
+				<snapshotRepository>
+					<id>nexus-snapshots</id>
+					<name>Nexus Snapshots</name>
+					<url>${env.NEXUSREPO}/repository/maven-snapshots/</url>
+					<layout>default</layout>
+				</snapshotRepository>
 			</distributionManagement>
 		</profile>
 	</profiles>
