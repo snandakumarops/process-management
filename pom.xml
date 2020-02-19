@@ -220,7 +220,15 @@
 			<version>7.27.0.Final</version>
 		</dependency>
 
-        <!-- https://mvnrepository.com/artifact/org.jpmml/pmml-evaluator -->
+		<!-- https://mvnrepository.com/artifact/com.google.guava/guava -->
+		<dependency>
+			<groupId>com.google.guava</groupId>
+			<artifactId>guava</artifactId>
+			<version>22.0-SNAPSHOT</version>
+		</dependency>
+
+
+		<!-- https://mvnrepository.com/artifact/org.jpmml/pmml-evaluator -->
         <dependency>
             <groupId>org.jpmml</groupId>
             <artifactId>pmml-evaluator</artifactId>
