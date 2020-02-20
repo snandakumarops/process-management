@@ -75,7 +75,7 @@
 			<groupId>com.myspace</groupId>
 			<artifactId>OfferPrediction</artifactId>
 			<version>1.0.0</version>
-			<scope>provided</scope>
+
 			
 		</dependency>
 		<dependency>
@@ -228,14 +228,14 @@
             <groupId>org.jpmml</groupId>
             <artifactId>pmml-evaluator</artifactId>
             <version>1.4.9</version>
-			<scope>runtime</scope>
+
         </dependency>
 		<!-- https://mvnrepository.com/artifact/org.jpmml/pmml-evaluator-extension -->
 		<dependency>
 			<groupId>org.jpmml</groupId>
 			<artifactId>pmml-evaluator-extension</artifactId>
 			<version>1.4.9</version>
-			<scope>runtime</scope>
+
 		</dependency>
 
 		<dependency>
