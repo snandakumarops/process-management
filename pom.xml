@@ -224,17 +224,19 @@
 
 
 		<!-- https://mvnrepository.com/artifact/org.jpmml/pmml-evaluator -->
-        <!--<dependency>-->
-            <!--<groupId>org.jpmml</groupId>-->
-            <!--<artifactId>pmml-evaluator</artifactId>-->
-            <!--<version>1.4.9</version>-->
-        <!--</dependency>-->
-		<!--&lt;!&ndash; https://mvnrepository.com/artifact/org.jpmml/pmml-evaluator-extension &ndash;&gt;-->
-		<!--<dependency>-->
-			<!--<groupId>org.jpmml</groupId>-->
-			<!--<artifactId>pmml-evaluator-extension</artifactId>-->
-			<!--<version>1.4.9</version>-->
-		<!--</dependency>-->
+        <dependency>
+            <groupId>org.jpmml</groupId>
+            <artifactId>pmml-evaluator</artifactId>
+            <version>1.4.9</version>
+			<scope>provided</scope>
+        </dependency>
+		<!-- https://mvnrepository.com/artifact/org.jpmml/pmml-evaluator-extension -->
+		<dependency>
+			<groupId>org.jpmml</groupId>
+			<artifactId>pmml-evaluator-extension</artifactId>
+			<version>1.4.9</version>
+			<scope>provided</scope>
+		</dependency>
 
 		<dependency>
 			<groupId>com.google.code.gson</groupId>
