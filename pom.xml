@@ -300,14 +300,20 @@
 			<id>openshift</id>
 			<repositories>
 				<repository>
-					<id>google-snapshots</id>
-					<url>https://oss.sonatype.org/content/repositories/snapshots/</url>
 					<releases>
 						<enabled>false</enabled>
+						<updatePolicy>always</updatePolicy>
+						<checksumPolicy>warn</checksumPolicy>
 					</releases>
 					<snapshots>
 						<enabled>true</enabled>
+						<updatePolicy>never</updatePolicy>
+						<checksumPolicy>fail</checksumPolicy>
 					</snapshots>
+					<id>sonatype-OSS-snaphots</id>
+					<name>Sonatype OSS Snapshots</name>
+					<url>https://oss.sonatype.org/content/repositories/snapshots/</url>
+					<layout>default</layout>
 				</repository>
 				<repository>
 					<id>nexus-releases</id>
