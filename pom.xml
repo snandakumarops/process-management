@@ -281,21 +281,19 @@
 	<profiles>
 		<profile>
 			<id>openshift</id>
-
-			<distributionManagement>
+			<repositories>
 				<repository>
-					<id>nexus-releases</id>
-					<name>nexus-releases</name>
+					<id>maven-releases</id>
+					<name>maven-releases</name>
 					<url>${env.NEXUSREPO}/repository/maven-releases/</url>
-					<layout>default</layout>
 				</repository>
-				<snapshotRepository>
-					<id>nexus-snapshots</id>
-					<name>Nexus Snapshots</name>
+				<repository>
+					<id>maven-snapshots</id>
+					<name>maven-snapshots</name>
 					<url>${env.NEXUSREPO}/repository/maven-snapshots/</url>
-					<layout>default</layout>
-				</snapshotRepository>
-			</distributionManagement>
+				</repository>
+			</repositories>
+
 		</profile>
 	</profiles>
 
