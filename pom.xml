@@ -14,6 +14,28 @@
 	<build>
 		<plugins>
 			<plugin>
+				<groupId>io.fabric8</groupId>
+				<artifactId>fabric8-maven-plugin</artifactId>
+				<version>4.0.0</version>
+				<executions>
+					<execution>
+						<id>fmp</id>
+						<goals>
+							<goal>resource</goal>
+							<goal>build</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<enricher>
+						<excludes>
+							<exclude>f8-maven-scm</exclude>
+						</excludes>
+						<!-- ADD HEALTH CHECK HERE -->
+					</enricher>
+				</configuration>
+			</plugin>
+			<plugin>
 				<!-- Build an executable JAR -->
 
 					<groupId>org.springframework.boot</groupId>
@@ -74,7 +96,7 @@
 		<dependency>
 			<groupId>com.myspace</groupId>
 			<artifactId>OfferPrediction</artifactId>
-			<version>LATEST</version>
+			<version>1.0.0</version>
 			<scope>provided</scope>
 			
 		</dependency>
@@ -294,6 +316,11 @@
 					<name>nexus-releases</name>
 					<url>${env.NEXUSREPO}/repository/maven-releases/</url>
 					<layout>default</layout>
+				</repository>
+				<repository>
+					<id>nexus-snapshots</id>
+					<name>nexus-snapshots</name>
+					<url>${env.NEXUSREPO}/repository/maven-snapshots/</url>
 				</repository>
 			</distributionManagement>
 		</profile>
