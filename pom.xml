@@ -307,10 +307,11 @@
 			<repositories>
 
 				<repository>
-					<id>maven-releases</id>
-					<name>maven-releases</name>
-					<url>http://nexus-rhpam7-offermgt-snandakumar.apps.cluster-florida-3cb2.florida-3cb2.example.opentlc.com/repository/maven-releases/</url>
+					<id>maven-public</id>
+					<name>maven-public</name>
+					<url>http://nexus-rhpam7-offermgt-snandakumar.apps.cluster-florida-3cb2.florida-3cb2.example.opentlc.com/repository/maven-public/</url>
 				</repository>
+
 
 			</repositories>
 			<distributionManagement>
