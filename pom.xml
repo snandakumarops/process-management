@@ -309,7 +309,7 @@
 				<repository>
 					<id>maven-releases</id>
 					<name>maven-releases</name>
-					<url>http://nexus-rhpam7-offermgt-snandaku.apps.cluster-2550.2550.sandbox56.opentlc.com/repository/maven-releases/</url>
+					<url>http://nexus-rhpam7-offermgt-snandakumar.apps.cluster-florida-3cb2.florida-3cb2.example.opentlc.com/repository/maven-releases/</url>
 				</repository>
 
 			</repositories>
@@ -318,13 +318,13 @@
 				<repository>
 					<id>nexus-releases</id>
 					<name>nexus-releases</name>
-					<url>http://nexus-rhpam7-offermgt-snandaku.apps.cluster-2550.2550.sandbox56.opentlc.com/repository/maven-releases/</url>
+					<url>http://nexus-rhpam7-offermgt-snandakumar.apps.cluster-florida-3cb2.florida-3cb2.example.opentlc.com/repository/maven-releases/</url>
 					<layout>default</layout>
 				</repository>
 				<snapshotRepository>
 					<id>nexus-snapshots</id>
 					<name>nexus-snapshots</name>
-					<url>http://nexus-rhpam7-offermgt-snandaku.apps.cluster-2550.2550.sandbox56.opentlc.com/repository/maven-snapshots/</url>
+					<url>http://nexus-rhpam7-offermgt-snandakumar.apps.cluster-florida-3cb2.florida-3cb2.example.opentlc.com/repository/maven-snapshots/</url>
 				</snapshotRepository>
 			</distributionManagement>
 		</profile>
