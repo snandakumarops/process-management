@@ -78,12 +78,16 @@
 
 		<dependencies>
 			<!-- https://mvnrepository.com/artifact/com.redhat.ba/ba-platform-bom -->
-			<dependency>
-				<groupId>com.redhat.ba</groupId>
-				<artifactId>ba-platform-bom</artifactId>
-				<version>7.5.1.redhat-00001</version>
-				<type>pom</type>
-				<scope>import</scope>
+
+				<dependency>
+					<groupId>com.redhat.ba</groupId>
+					<artifactId>ba-platform-bom</artifactId>
+					<version>7.6.0.redhat-00004</version>
+					<type>pom</type>
+					<scope>import</scope>
+
+
+
 			</dependency>
 
 
@@ -243,19 +247,19 @@
 		</dependency>
 
 
-        <!--<dependency>-->
-            <!--<groupId>org.jpmml</groupId>-->
-            <!--<artifactId>pmml-evaluator</artifactId>-->
-            <!--<version>1.4.9</version>-->
-			<!--<scope>provided</scope>-->
-        <!--</dependency>-->
-		<!--&lt;!&ndash; https://mvnrepository.com/artifact/org.jpmml/pmml-evaluator-extension &ndash;&gt;-->
-		<!--<dependency>-->
-			<!--<groupId>org.jpmml</groupId>-->
-			<!--<artifactId>pmml-evaluator-extension</artifactId>-->
-			<!--<version>1.4.9</version>-->
-			<!--<scope>provided</scope>-->
-		<!--</dependency>-->
+        <dependency>
+            <groupId>org.jpmml</groupId>
+            <artifactId>pmml-evaluator</artifactId>
+            <version>1.4.9</version>
+			<scope>provided</scope>
+        </dependency>
+		<!-- https://mvnrepository.com/artifact/org.jpmml/pmml-evaluator-extension -->
+		<dependency>
+			<groupId>org.jpmml</groupId>
+			<artifactId>pmml-evaluator-extension</artifactId>
+			<version>1.4.9</version>
+			<scope>provided</scope>
+		</dependency>
 
 		<dependency>
 			<groupId>com.google.code.gson</groupId>
@@ -301,45 +305,26 @@
 		<profile>
 			<id>openshift</id>
 			<repositories>
+
 				<repository>
-					<releases>
-						<enabled>false</enabled>
-						<updatePolicy>always</updatePolicy>
-						<checksumPolicy>warn</checksumPolicy>
-					</releases>
-					<snapshots>
-						<enabled>true</enabled>
-						<updatePolicy>never</updatePolicy>
-						<checksumPolicy>fail</checksumPolicy>
-					</snapshots>
-					<id>sonatype-OSS-snaphots</id>
-					<name>Sonatype OSS Snapshots</name>
-					<url>https://oss.sonatype.org/content/repositories/snapshots/</url>
-					<layout>default</layout>
+					<id>maven-releases</id>
+					<name>maven-releases</name>
+					<url>http://nexus-rhpam7-offermgt-snandaku.apps.cluster-2550.2550.sandbox56.opentlc.com/repository/maven-releases/</url>
 				</repository>
-				<repository>
-					<id>nexus-releases</id>
-					<name>nexus-releases</name>
-					<url>${env.NEXUSREPO}/repository/maven-releases/</url>
-				</repository>
-				<repository>
-					<id>nexus-snapshots</id>
-					<name>nexus-snapshots</name>
-					<url>${env.NEXUSREPO}/repository/maven-snapshots/</url>
-				</repository>
+
 			</repositories>
 			<distributionManagement>
 
 				<repository>
 					<id>nexus-releases</id>
 					<name>nexus-releases</name>
-					<url>${env.NEXUSREPO}/repository/maven-releases/</url>
+					<url>http://nexus-rhpam7-offermgt-snandaku.apps.cluster-2550.2550.sandbox56.opentlc.com/repository/maven-releases/</url>
 					<layout>default</layout>
 				</repository>
 				<snapshotRepository>
 					<id>nexus-snapshots</id>
 					<name>nexus-snapshots</name>
-					<url>${env.NEXUSREPO}/repository/maven-snapshots/</url>
+					<url>http://nexus-rhpam7-offermgt-snandaku.apps.cluster-2550.2550.sandbox56.opentlc.com/repository/maven-snapshots/</url>
 				</snapshotRepository>
 			</distributionManagement>
 		</profile>
