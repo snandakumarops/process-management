@@ -101,7 +101,7 @@ public class RulesApplier {
                res+=output;
             }
 
-            Object map = new Gson().fromJson(res, Object.class);
+            Map map = new Gson().fromJson(res, Map.class);
 
 
 
