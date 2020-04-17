@@ -95,20 +95,21 @@ public class RulesApplier {
                     (conn.getInputStream())));
 
             String output;
+            String res = "";
             System.out.println("Output from Server .... \n");
             while ((output = br.readLine()) != null) {
-                System.out.println(output);
+               res+=output;
             }
-            System.out.println(new Gson().toJson(output));
-            Object map = new Gson().fromJson(output, Object.class);
 
-            System.out.println(map.getClass());
+            Object map = new Gson().fromJson(res, Object.class);
 
-//            customerOfferModel.setCustId((String) map.get("custId"));
-//            customerOfferModel.setCustomerSegmentation((String) map.get("prediction"));
-//            customerOfferModel.setQualifiedPurchases((String) map.get("qualifiedPurchases"));
-//            customerOfferModel.setCustClass((String) map.get("customerClass"));
-//            customerOfferModel.setCustAge((Double) map.get("age"));
+
+
+            customerOfferModel.setCustId((String) map.get("custId"));
+            customerOfferModel.setCustomerSegmentation((String) map.get("prediction"));
+            customerOfferModel.setQualifiedPurchases((String) map.get("qualifiedPurchases"));
+            customerOfferModel.setCustClass((String) map.get("customerClass"));
+            customerOfferModel.setCustAge((Double) map.get("age"));
 
 
             conn.disconnect();
