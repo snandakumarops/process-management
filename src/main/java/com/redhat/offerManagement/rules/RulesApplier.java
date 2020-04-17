@@ -84,7 +84,7 @@ public class RulesApplier {
 
             if (conn.getResponseCode() != 200) {
                 throw new RuntimeException("Failed : HTTP error code : "
-                        + conn.getResponseCode());
+                        + conn.getResponseCode()+conn.getResponseMessage());
             }
 
             BufferedReader br = new BufferedReader(new InputStreamReader(
