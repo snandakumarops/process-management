@@ -109,7 +109,7 @@ public class RulesApplier {
             customerOfferModel.setCustomerSegmentation((String) map.get("prediction"));
             customerOfferModel.setQualifiedPurchases((String) map.get("qualifiedPurchases"));
             customerOfferModel.setCustClass((String) map.get("customerClass"));
-            customerOfferModel.setCustAge((Double) map.get("age"));
+            customerOfferModel.setCustAge(Double.valueOf((String) map.get("age")));
 
 
             conn.disconnect();
