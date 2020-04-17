@@ -73,6 +73,7 @@ public class RulesApplier {
     }
 
     public CustomerOfferModel fetchCustomerContext(String custId, String eventTyoe) {
+
         CustomerOfferModel customerOfferModel = new CustomerOfferModel();
         try {
 
