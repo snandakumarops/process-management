@@ -109,12 +109,6 @@
 			<artifactId>spring-boot-starter</artifactId>
 		</dependency>
 
-		<dependency>
-			<groupId>com.myspace</groupId>
-			<artifactId>customer-model</artifactId>
-			<version>1.0.0.0</version>
-			<scope>provided</scope>
-		</dependency>
 
 
 
