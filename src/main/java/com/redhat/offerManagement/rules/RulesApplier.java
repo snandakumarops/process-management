@@ -102,6 +102,8 @@ public class RulesApplier {
 
             Map map = new Gson().fromJson(output, Map.class);
 
+            System.out.println(map.keySet());
+
             customerOfferModel.setCustId((String) map.get("custId"));
             customerOfferModel.setCustomerSegmentation((String) map.get("prediction"));
             customerOfferModel.setQualifiedPurchases((String) map.get("qualifiedPurchases"));
@@ -115,7 +117,7 @@ public class RulesApplier {
 
             e.printStackTrace();
 
-        } catch (IOException e) {
+        } catch (Exception e) {
 
             e.printStackTrace();
 
