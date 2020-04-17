@@ -110,6 +110,7 @@ public class RulesApplier {
             customerOfferModel.setQualifiedPurchases((String) map.get("qualifiedPurchases"));
             customerOfferModel.setCustClass((String) map.get("customerClass"));
             customerOfferModel.setCustAge(Double.valueOf((String) map.get("age")));
+            customerOfferModel.setCustIncome(Double.valueOf((String) map.get("income")));
 
 
             conn.disconnect();
