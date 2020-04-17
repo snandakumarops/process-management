@@ -99,7 +99,7 @@ public class RulesApplier {
             while ((output = br.readLine()) != null) {
                 System.out.println(output);
             }
-
+            System.out.println(new Gson().toJson(output));
             Object map = new Gson().fromJson(output, Object.class);
 
             System.out.println(map.getClass());
