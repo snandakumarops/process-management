@@ -100,15 +100,15 @@ public class RulesApplier {
                 System.out.println(output);
             }
 
-            Map map = new Gson().fromJson(output, Map.class);
+            Object map = new Gson().fromJson(output, Object.class);
 
-            System.out.println(map.keySet());
+            System.out.println(map.getClass());
 
-            customerOfferModel.setCustId((String) map.get("custId"));
-            customerOfferModel.setCustomerSegmentation((String) map.get("prediction"));
-            customerOfferModel.setQualifiedPurchases((String) map.get("qualifiedPurchases"));
-            customerOfferModel.setCustClass((String) map.get("customerClass"));
-            customerOfferModel.setCustAge((Double) map.get("age"));
+//            customerOfferModel.setCustId((String) map.get("custId"));
+//            customerOfferModel.setCustomerSegmentation((String) map.get("prediction"));
+//            customerOfferModel.setQualifiedPurchases((String) map.get("qualifiedPurchases"));
+//            customerOfferModel.setCustClass((String) map.get("customerClass"));
+//            customerOfferModel.setCustAge((Double) map.get("age"));
 
 
             conn.disconnect();
