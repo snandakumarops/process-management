@@ -74,10 +74,12 @@ public class RulesApplier {
 
     public CustomerOfferModel fetchCustomerContext(String custId, String eventTyoe) {
 
+
         CustomerOfferModel customerOfferModel = new CustomerOfferModel();
         try {
 
             URL url = new URL("http://predictionservice-customer-event-context.apps.cluster-flrda-91e7.flrda-91e7.example.opentlc.com/camel/customer-context?custId="+custId+"&eventType="+eventTyoe);
+            System.out.println("url to access"+url.getPath());
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setRequestMethod("GET");
             conn.setRequestProperty("Accept", "application/json");
