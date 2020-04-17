@@ -1,18 +1,8 @@
 package com.redhat.offerManagement.rules;
 
 import com.google.gson.Gson;
-
-
-import com.myspace.offermanagement.customerModel.CustomerModel;
-import com.myspace.offermanagement.customerModel.PastHistoryModel;
 import com.redhat.offerManagement.CustomerOfferModel;
 import com.redhat.offerManagement.EventStreamModel;
-import com.redhat.offerManagement.JdgCustomerRepository;
-import com.redhat.offermanagement.CustomerRepository;
-import com.redhat.offermanagement.JdgPastHistRepository;
-import com.redhat.offermanagement.PastHistoryRepository;
-import org.kie.api.runtime.ClassObjectFilter;
-import org.kie.api.runtime.KieSession;
 import org.kie.dmn.api.core.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,7 +13,6 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.Collection;
 import java.util.Map;
 
 
