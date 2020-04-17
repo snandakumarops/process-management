@@ -45,7 +45,7 @@ public class RulesApplier {
         DMNModel dmnModel = dmnRuntime.getModel(namespace, modelName);
         System.out.println(key.replace("\"",""));
 
-        CustomerOfferModel customerOfferModel = fetchCustomerContext(key,eventModel.getEventValue());
+        CustomerOfferModel customerOfferModel = fetchCustomerContext(key.replace("\"",""),eventModel.getEventValue());
 
         DMNContext dmnContext = dmnRuntime.newContext();
         dmnContext.set("Customer Segmentation", customerOfferModel.getCustomerSegmentation());
