@@ -17,7 +17,14 @@ import org.kie.dmn.api.core.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.Collection;
+import java.util.Map;
 
 
 public class RulesApplier {
@@ -39,8 +46,7 @@ public class RulesApplier {
 
         EventStreamModel eventModel = new Gson().fromJson(value,EventStreamModel.class);
 
-         CustomerRepository customerRepository = new JdgCustomerRepository();
-         PastHistoryRepository pastHistoryRepository = new JdgPastHistRepository();
+
 
 
         DMNRuntime dmnRuntime = RulesSessionFactory.createDMNRuntime();
@@ -49,16 +55,13 @@ public class RulesApplier {
         String modelName = "OfferPredictionDMN";
         DMNModel dmnModel = dmnRuntime.getModel(namespace, modelName);
         System.out.println(key.replace("\"",""));
-        CustomerModel customerModel = customerRepository.getCustomer(key.replace("\"",""));
-        System.out.println(customerModel);
-        PastHistoryModel pastHistoryModel = pastHistoryRepository.getPastHist(key.replace("\"",""));
+
+        CustomerOfferModel customerOfferModel = fetchCustomerContext(key,eventModel.getEventValue());
 
         DMNContext dmnContext = dmnRuntime.newContext();
-        dmnContext.set("Age", customerModel.getAge());
-        dmnContext.set("Income",customerModel.getIncome());
-        dmnContext.set("Customer Class",customerModel.getCustomerClass());
-        dmnContext.set("Qualified Purchases",pastHistoryModel.getQualifiedPurchases());
-        dmnContext.set("Last Offer Response",pastHistoryModel.getLastOfferResponse());
+        dmnContext.set("Customer Segmentation", customerOfferModel.getCustomerSegmentation());
+        dmnContext.set("Customer Class",customerOfferModel.getCustClass());
+        dmnContext.set("Qualified Purchases",customerOfferModel.getQualifiedPurchases());
         dmnContext.set("Current Event",eventModel.getEventValue());
 
         DMNResult dmnResult = dmnRuntime.evaluateAll(dmnModel, dmnContext);
@@ -66,30 +69,64 @@ public class RulesApplier {
         DMNDecisionResult resultOffer = dmnResult.getDecisionResultByName("Offer");
         String resultOfferPayload = (String)resultOffer.getResult();
 
-        DMNDecisionResult resultOffer1 = dmnResult.getDecisionResultByName("Customer Segmentation");
-        String resultOfferPayload1 = (String)resultOffer1.getResult();
-
-        System.out.println("Customer::"+key+customerModel.getAge()+"::"+customerModel.getIncome()+"::"
-                +customerModel.getCustomerClass()+"::"+pastHistoryModel.getQualifiedPurchases()+"::"
-                +eventModel.getEventValue()+"::"+pastHistoryModel.getLastOfferResponse()+ resultOfferPayload+"::"+resultOfferPayload1);
-
+        System.out.println("Before Evaluation"+customerOfferModel);
 
             if(!resultOfferPayload.equals("No Active Offers")) {
-                CustomerOfferModel customerOfferModel = new CustomerOfferModel();
-                customerOfferModel.setCustId(customerModel.getCustId());
-                customerOfferModel.setCustAge(customerModel.getAge());
-                customerOfferModel.setCustIncome(customerModel.getIncome());
-                customerOfferModel.setCustClass(customerModel.getCustomerClass());
-                customerOfferModel.setQualifiedPurchases(pastHistoryModel.getQualifiedPurchases());
-                customerOfferModel.setLastOfferResponse(pastHistoryModel.getLastOfferResponse());
-                customerOfferModel.setCustomerSegmentation(resultOfferPayload1);
                 customerOfferModel.setActiveOffers(resultOfferPayload);
+                System.out.println("After Evaluation"+customerOfferModel);
                 return new Gson().toJson(customerOfferModel);
             }else{
                 return null;
             }
 
 
+
+    }
+
+    public CustomerOfferModel fetchCustomerContext(String custId, String eventTyoe) {
+        CustomerOfferModel customerOfferModel = new CustomerOfferModel();
+        try {
+
+            URL url = new URL("http://predictionservice-customer-event-context.apps.cluster-flrda-91e7.flrda-91e7.example.opentlc.com/camel/customer-context?custId="+custId+"&eventType="+eventTyoe);
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            conn.setRequestMethod("GET");
+            conn.setRequestProperty("Accept", "application/json");
+
+            if (conn.getResponseCode() != 200) {
+                throw new RuntimeException("Failed : HTTP error code : "
+                        + conn.getResponseCode());
+            }
+
+            BufferedReader br = new BufferedReader(new InputStreamReader(
+                    (conn.getInputStream())));
+
+            String output;
+            System.out.println("Output from Server .... \n");
+            while ((output = br.readLine()) != null) {
+                System.out.println(output);
+            }
+
+            Map map = new Gson().fromJson(output, Map.class);
+
+            customerOfferModel.setCustId((String) map.get("custId"));
+            customerOfferModel.setCustomerSegmentation((String) map.get("prediction"));
+            customerOfferModel.setQualifiedPurchases((String) map.get("qualifiedPurchases"));
+            customerOfferModel.setCustClass((String) map.get("customerClass"));
+            customerOfferModel.setCustAge((Double) map.get("age"));
+
+
+            conn.disconnect();
+
+        } catch (MalformedURLException e) {
+
+            e.printStackTrace();
+
+        } catch (IOException e) {
+
+            e.printStackTrace();
+
+        }
+        return customerOfferModel;
 
     }
 
