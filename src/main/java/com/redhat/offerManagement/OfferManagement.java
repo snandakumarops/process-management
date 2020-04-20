@@ -7,6 +7,7 @@ import org.apache.kafka.streams.StreamsBuilder;
 import org.apache.kafka.streams.StreamsConfig;
 import org.apache.kafka.streams.kstream.KStream;
 import org.apache.kafka.streams.kstream.Produced;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.kafka.KafkaProperties;
@@ -23,6 +24,10 @@ import java.util.Map;
 @EnableKafka
 @EnableKafkaStreams
 public class OfferManagement {
+
+	@Value("${prediction.service.url}")
+	public String predictionUrl;
+
 
 	public static final String BROKER_URL = "my-cluster-kafka-brokers:9092";
 	public static final String INPUT_TOPIC = "event-input-stream";
@@ -47,7 +52,7 @@ public class OfferManagement {
 		RulesApplier rulesApplier = new RulesApplier();
 		final KStream<String, String> inputTopic = builder.stream(INPUT_TOPIC);
 
-		KStream<String, String> outputData = inputTopic.map((x,y) -> new KeyValue<String,String>(x,rulesApplier.processTransactionDMN(x,y)));
+		KStream<String, String> outputData = inputTopic.map((x,y) -> new KeyValue<String,String>(x,rulesApplier.processTransactionDMN(x,y,predictionUrl)));
 		//Branch all not null events
 		KStream<String, String>[] analyzedEvents = outputData.branch((x, y) ->  y!=null);
 		analyzedEvents[0].to(OUTPUT_TOPIC, Produced.with(Serdes.String(), Serdes.String()));

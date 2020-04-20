@@ -31,7 +31,7 @@ public class RulesApplier {
 
 
 
-    public String processTransactionDMN(String key, String value) {
+    public String processTransactionDMN(String key, String value, String predictionUrl) {
 
         EventStreamModel eventModel = new Gson().fromJson(value,EventStreamModel.class);
 
@@ -45,7 +45,7 @@ public class RulesApplier {
         DMNModel dmnModel = dmnRuntime.getModel(namespace, modelName);
         System.out.println(key.replace("\"",""));
 
-        CustomerOfferModel customerOfferModel = fetchCustomerContext(key.replace("\"",""),eventModel.getEventValue());
+        CustomerOfferModel customerOfferModel = fetchCustomerContext(key.replace("\"",""),eventModel.getEventValue(),predictionUrl);
 
         DMNContext dmnContext = dmnRuntime.newContext();
         dmnContext.set("Customer Segmentation", customerOfferModel.getCustomerSegmentation());
@@ -72,10 +72,10 @@ public class RulesApplier {
 
     }
 
-    public CustomerOfferModel fetchCustomerContext(String custId, String eventTyoe) {
+    public CustomerOfferModel fetchCustomerContext(String custId, String eventTyoe,String predictionUrl) {
 
 
-        String urlString = "http://predictionservice-customer-event-context.apps.cluster-flrda-91e7.flrda-91e7.example.opentlc.com/camel/customer-context?custId="+custId+"&eventType="+eventTyoe;
+        String urlString = predictionUrl+"/camel/customer-context?custId="+custId+"&eventType="+eventTyoe;
         System.out.println(urlString);
         CustomerOfferModel customerOfferModel = new CustomerOfferModel();
         try {
