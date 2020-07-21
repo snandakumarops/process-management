@@ -4,11 +4,11 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.redhat</groupId>
-	<artifactId>offer-management</artifactId>
+	<artifactId>process-management</artifactId>
 	<version>1.0.0</version>
 	<packaging>jar</packaging>
 
-	<name>offer-management</name>
+	<name>process-management</name>
 	<description>Offer Management Use case</description>
 
 	<build>

@@ -5,6 +5,7 @@ import org.apache.kafka.common.serialization.Serdes;
 import org.apache.kafka.streams.KeyValue;
 import org.apache.kafka.streams.StreamsBuilder;
 import org.apache.kafka.streams.StreamsConfig;
+import org.apache.kafka.streams.kstream.JoinWindows;
 import org.apache.kafka.streams.kstream.KStream;
 import org.apache.kafka.streams.kstream.Produced;
 import org.springframework.beans.factory.annotation.Value;
@@ -19,19 +20,18 @@ import org.springframework.kafka.annotation.KafkaStreamsDefaultConfiguration;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 @SpringBootApplication
 @EnableKafka
 @EnableKafkaStreams
 public class OfferManagement {
 
-	@Value("${prediction.service.url}")
-	public String predictionUrl;
 
 
 	public static final String BROKER_URL = "my-cluster-kafka-brokers:9092";
-	public static final String INPUT_TOPIC = "event-input-stream";
-	public static final String OUTPUT_TOPIC = "offer-output";
+	public static final String INPUT_TOPIC = "sensu-event-stream";
+	public static final String OUTPUT_TOPIC = "apb-runs";
 
 
 
@@ -51,13 +51,27 @@ public class OfferManagement {
 
 		RulesApplier rulesApplier = new RulesApplier();
 		final KStream<String, String> inputTopic = builder.stream(INPUT_TOPIC);
+		final KStream<String,String> apbRunTopic = builder.stream(OUTPUT_TOPIC);
 
-		KStream<String, String> outputData = inputTopic.map((x,y) -> new KeyValue<String,String>(x,rulesApplier.processTransactionDMN(x,y,predictionUrl)));
-		//Branch all not null events
-		KStream<String, String>[] analyzedEvents = outputData.branch((x, y) ->  y!=null);
-		analyzedEvents[0].to(OUTPUT_TOPIC, Produced.with(Serdes.String(), Serdes.String()));
+		KStream<String, String> joined = inputTopic.leftJoin(apbRunTopic,
+				(leftValue, rightValue) -> leftValue + "|" + rightValue, /* ValueJoiner */
+				JoinWindows.of(TimeUnit.MINUTES.toMillis(5)),
+				Serdes.String(), /* key */
+				Serdes.String(),   /* left value */
+				Serdes.String() /* right value */
+		);
+		joined.print();
 
-		return outputData;
+//
+//
+////		KStream<String, String> outputData = inputTopic.map((x,y) -> new KeyValue<String,String>(x,rulesApplier.processTransactionDMN(x,y,predictionUrl)));
+//		//Branch all not null events
+//		KStream<String, String>[] analyzedEvents = outputData.branch((x, y) ->  y!=null);
+//		analyzedEvents[0].to(OUTPUT_TOPIC, Produced.with(Serdes.String(), Serdes.String()));
+//
+//		return outputData;
+
+		return null;
 	}
 
 
